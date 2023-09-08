@@ -5,8 +5,9 @@ metadata:
 spec:
   selector:
     app: hello-k8s
-  type: ClusterIP
+  type: NodePort
   ports:
     - name: web
       port: 9000
       targetPort: 8080 # Or "web" (port name in deployment)
+      nodePort: 30001

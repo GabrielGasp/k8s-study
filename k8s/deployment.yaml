@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: hello-k8s
-          image: gabrielgasp/hello-k8s:node
+          image: gabrielgasp/hello-k8s:v3
           imagePullPolicy: Always
           ports:
             - name: web
