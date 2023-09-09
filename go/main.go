@@ -13,9 +13,10 @@ func main() {
 }
 
 func hello(w http.ResponseWriter, r *http.Request) {
-	podName, _ := os.Hostname()
+	name := os.Getenv("NAME")
+	podName := os.Getenv("HOSTNAME")
 
-	res := fmt.Sprintf("<h1>Hello K8S from pod %s!!!</h1>", podName[len(podName)-5:])
+	res := fmt.Sprintf("<h1>Hello %s from pod %s!!!</h1>", name, podName)
 
 	w.Write([]byte(res))
 }

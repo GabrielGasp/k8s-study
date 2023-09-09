@@ -5,7 +5,7 @@ metadata:
   labels:
     app: hello-k8s
 spec:
-  replicas: 5
+  replicas: 3
   selector:
     matchLabels:
       app: hello-k8s
@@ -16,11 +16,14 @@ spec:
     spec:
       containers:
         - name: hello-k8s
-          image: gabrielgasp/hello-k8s:v3
+          image: gabrielgasp/hello-k8s:v4
           imagePullPolicy: Always
           ports:
             - name: web
               containerPort: 8080
+          env:
+            - name: NAME
+              value: "Gabriel"
           resources:
             limits:
               cpu: 100m
