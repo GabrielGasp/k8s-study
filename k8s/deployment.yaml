@@ -21,9 +21,9 @@ spec:
           ports:
             - name: web
               containerPort: 8080
-          env:
-            - name: NAME
-              value: "Gabriel"
+          envFrom:
+            - configMapRef:
+                name: hello-k8s
           resources:
             limits:
               cpu: 100m
