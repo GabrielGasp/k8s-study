@@ -16,13 +16,15 @@ spec:
     spec:
       containers:
         - name: hello-k8s
-          image: gabrielgasp/hello-k8s:v4
+          image: gabrielgasp/hello-k8s:v5
           imagePullPolicy: Always
           ports:
             - name: web
               containerPort: 8080
           envFrom:
             - configMapRef:
+                name: hello-k8s
+            - secretRef:
                 name: hello-k8s
           resources:
             limits:
