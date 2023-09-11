@@ -4,12 +4,15 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"time"
 )
+
+var startedAt = time.Now()
 
 func main() {
 	http.HandleFunc("/", hello)
 	http.HandleFunc("/secret", secret)
-	http.HandleFunc("/health", health)
+	http.HandleFunc("/healthz", healthz)
 	http.ListenAndServe(":8080", nil)
 }
 
@@ -31,6 +34,23 @@ func secret(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte(res))
 }
 
-func health(w http.ResponseWriter, r *http.Request) {
+func healthz(w http.ResponseWriter, r *http.Request) {
+	duration := time.Since(startedAt).Seconds()
+
+	// Readiness probe
+	if duration < 10 {
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte(fmt.Sprintf("Readiness probe fail: Duration %v", duration)))
+		return
+	}
+
+	// Liveness probe
+	if duration > 30 {
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte(fmt.Sprintf("Liveness probe fail: Duration %v", duration)))
+		return
+	}
+
 	w.WriteHeader(http.StatusOK)
+	w.Write([]byte(fmt.Sprintf("All probes OK: Duration: %v", duration)))
 }
