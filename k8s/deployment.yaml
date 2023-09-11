@@ -16,20 +16,26 @@ spec:
     spec:
       containers:
         - name: hello-k8s
-          image: gabrielgasp/hello-k8s:v6.1
+          image: gabrielgasp/hello-k8s:v7
           imagePullPolicy: Always
+
           ports:
             - name: web
               containerPort: 8080
+
           envFrom:
             - configMapRef:
                 name: hello-k8s
             - secretRef:
                 name: hello-k8s
+
           resources:
-            limits:
+            requests:
               cpu: 100m
-              memory: 256Mi
+              memory: 64Mi
+            limits:
+              cpu: 200m
+              memory: 128Mi
 
           startupProbe:
             httpGet:

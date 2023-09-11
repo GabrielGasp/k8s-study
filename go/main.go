@@ -40,14 +40,7 @@ func healthz(w http.ResponseWriter, r *http.Request) {
 	// Readiness probe
 	if duration < 10 {
 		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte(fmt.Sprintf("Readiness probe fail: Duration %v", duration)))
-		return
-	}
-
-	// Liveness probe
-	if duration > 30 {
-		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte(fmt.Sprintf("Liveness probe fail: Duration %v", duration)))
+		w.Write([]byte(fmt.Sprintf("Healthcheck fail: Duration %v", duration)))
 		return
 	}
 
