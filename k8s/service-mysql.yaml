@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-svc # This name must match the serviceName in the StatefulSet
+spec:
+  selector:
+    app: mysql
+  type: ClusterIP
+  clusterIP: None # headless service
+  ports:
+    - name: mysql
+      port: 3306
+      targetPort: 3306

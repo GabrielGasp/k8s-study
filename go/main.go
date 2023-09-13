@@ -37,7 +37,7 @@ func secret(w http.ResponseWriter, r *http.Request) {
 func healthz(w http.ResponseWriter, r *http.Request) {
 	duration := time.Since(startedAt).Seconds()
 
-	// Readiness probe
+	// probe
 	if duration < 10 {
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte(fmt.Sprintf("Healthcheck fail: Duration %v", duration)))
