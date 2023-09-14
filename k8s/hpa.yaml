@@ -1,6 +1,7 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
+  namespace: hello-k8s
   name: hello-k8s
 spec:
   scaleTargetRef:

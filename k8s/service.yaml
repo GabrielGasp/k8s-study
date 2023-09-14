@@ -1,6 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
+  namespace: hello-k8s
   name: hello-k8s-svc
 spec:
   selector:

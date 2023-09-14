@@ -1,6 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
+  namespace: hello-k8s
   name: mysql-svc # This name must match the serviceName in the StatefulSet
 spec:
   selector:

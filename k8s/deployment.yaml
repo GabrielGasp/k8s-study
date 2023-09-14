@@ -1,11 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: hello-k8s
   name: hello-k8s
   labels:
     app: hello-k8s
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: hello-k8s
