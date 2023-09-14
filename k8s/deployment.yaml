@@ -15,6 +15,7 @@ spec:
       labels:
         app: hello-k8s
     spec:
+      serviceAccountName: hello-k8s-sa
       containers:
         - name: hello-k8s
           image: gabrielgasp/hello-k8s:v7

@@ -10,9 +10,10 @@ helm upgrade --install ingress-nginx ingress-nginx \
   --namespace ingress-nginx --create-namespace
 ```
 
-3. Create namspace, configmap and secret
+3. Create namspace, service account, configmap and secret
 ```bash
 kubectl apply -f k8s/namespace.yaml && \
+kubectl apply -f k8s/service-account.yaml && \
 kubectl apply -f k8s/configmap.yaml && \
 kubectl apply -f k8s/secret.yaml
 ```
